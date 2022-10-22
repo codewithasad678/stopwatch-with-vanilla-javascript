@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- // No Html User ONly JavaScript Uses -->
+
+
+
+<p id="para"></p>
+
+    <script>
+       window.onload = function(){
+        var tens= 00;
+        var mtens = 00;
+         // body 
+         document.body.style.backgroundColor = "#FFA600";
+        let main = document.createElement("div");
+        main.style.cssText = "width:100%;height:100vh;display:flex;justify-content:center;align-items:center:overflow:hidden;";
+        document.body.appendChild(main);
+        // wrapper section
+        let wrapper = document.createElement("div");
+        wrapper.style.cssText = "width: 500px;height:400px;border-radius:8px;box-shadow:2px 2px 8px gray; margin:auto;text-align:center;color:white;";
+        main.appendChild(wrapper);
+
+        // inner text here 
+        let innerMain = document.createElement("div");
+        innerMain.style.cssText = "display:flex;justify-content:center;flex-direction:column;padding:10px";
+        wrapper.appendChild(innerMain);
+        innerMain.className = "innerText";
+
+        let heading = document.createElement("h1");
+        heading.innerHTML = "Stop Watch With Vanilla JavaScript";
+        heading.style.cssText = "text-align:center;color:white";
+        innerMain.appendChild(heading)
+
+        // minut and seconds
+        var minutes = document.createElement("span");
+        minutes.innerHTML = "00";
+
+        var second = document.createElement("span");
+        second.innerHTML ="00";
+
+        var center = document.createElement("span");
+        center.innerHTML =":";
+
+        var timeTotal = document.createElement("p");
+        timeTotal.appendChild(minutes);
+        timeTotal.appendChild(center);
+        timeTotal.appendChild(second);
+        wrapper.appendChild(timeTotal);
+        timeTotal.style.cssText = "font-size:32px";
+
+        // buttons
+        let buttonDiv = document.createElement("div");
+        buttonDiv.style.cssText = "display:flex;justify-content:space-evenly;height:150px;align-items:center";
+        wrapper.appendChild(buttonDiv);
+
+        let startBtn = document.createElement("button");
+        startBtn.style.cssText = "border-radius:5px;padding:10px 30px;border:1px solid white;background-color:transparent;color:white";
+        startBtn.textContent = "Start";
+        buttonDiv.appendChild(startBtn);
+        let endBtn = document.createElement("button");
+        endBtn.style.cssText = "border-radius:5px;padding:10px 30px;border:1px solid white;background-color:transparent;color:white";
+        endBtn.textContent = "Stop";
+        buttonDiv.appendChild(endBtn);
+
+        let resetBtn = document.createElement("button");
+        resetBtn.style.cssText = "border-radius:5px;padding:10px 30px;border:1px solid white;background-color:transparent;color:white";
+        resetBtn.textContent = "Reset";
+        buttonDiv.appendChild(resetBtn);
+var Interval;
+
+
+
+        startBtn.onclick = () => {
+            clearInterval(Interval);
+            Interval = setInterval(updateTime, 10);
+        }
+        endBtn.onclick = () => {
+            clearInterval(Interval);
+        }
+        resetBtn.onclick = () => {
+            clearInterval(Interval);
+            minutes.innerHTML = "00";
+            second.innerHTML = "00";
+        }
+
+        function updateTime () {
+            
+            tens++;
+            if(tens <= 9){
+                second.innerHTML = "0"+ tens;
+
+            }
+             if(tens > 9){
+                second.innerHTML = tens;
+            }
+             if(tens > 99 ){
+                mtens++;
+                minutes.innerHTML = "0" + mtens;
+                tens = 0;
+                second.innerHTML = "0" + tens;
+            }
+            if(mtens > 9 ){
+                minutes.innerHTML = mtens;
+            }
+
+        }
+       }
+    </script>
+</body>
+</html>
